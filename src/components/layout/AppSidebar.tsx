@@ -1,5 +1,5 @@
 import { Link, useLocation } from 'react-router-dom';
-import { LayoutDashboard, Upload, MessageSquare, Database, Sparkles } from 'lucide-react';
+import { LayoutDashboard, Upload, MessageSquare, Database, Sparkles, Table2 } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 const navItems = [
