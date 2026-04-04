@@ -105,7 +105,7 @@ export const DataProvider: React.FC<{ children: React.ReactNode }> = ({ children
   return (
     <DataContext.Provider value={{
       dataset, setDataset, chatMessages, addChatMessage,
-      isProcessing, setIsProcessing, uploadCSV, loadDemo,
+      isProcessing, setIsProcessing, uploadFile, loadDemo,
     }}>
       {children}
     </DataContext.Provider>
