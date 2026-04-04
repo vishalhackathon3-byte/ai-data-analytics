@@ -1,4 +1,7 @@
+import { useRef } from 'react';
 import { motion } from 'framer-motion';
+import { Download } from 'lucide-react';
+import { toPng } from 'html-to-image';
 import {
   ResponsiveContainer, AreaChart, Area, BarChart, Bar, LineChart, Line,
   XAxis, YAxis, CartesianGrid, Tooltip, PieChart, Pie, Cell,
@@ -33,10 +36,23 @@ interface AnalyticsChartProps {
 }
 
 const AnalyticsChart = ({ config, index }: AnalyticsChartProps) => {
+  const chartRef = useRef<HTMLDivElement>(null);
+
+  const exportPng = async () => {
+    if (!chartRef.current) return;
+    try {
+      const url = await toPng(chartRef.current, { backgroundColor: '#0d0f14', pixelRatio: 2 });
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `${config.title.replace(/\s+/g, '_').toLowerCase()}.png`;
+      a.click();
+    } catch (e) {
+      console.error('Export failed', e);
+    }
+  };
+
   const renderChart = () => {
-    const commonProps = {
-      data: config.data,
-    };
+    const commonProps = { data: config.data };
 
     switch (config.type) {
       case 'area':
@@ -96,9 +112,19 @@ const AnalyticsChart = ({ config, index }: AnalyticsChartProps) => {
       initial={{ opacity: 0, y: 16 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: index * 0.1 + 0.3, duration: 0.4 }}
-      className="glass rounded-xl p-5"
+      className="glass rounded-xl p-5 group"
+      ref={chartRef}
     >
-      <h3 className="text-sm font-semibold text-foreground mb-4">{config.title}</h3>
+      <div className="flex items-center justify-between mb-4">
+        <h3 className="text-sm font-semibold text-foreground">{config.title}</h3>
+        <button
+          onClick={exportPng}
+          className="opacity-0 group-hover:opacity-100 transition-opacity p-1.5 rounded-md hover:bg-secondary text-muted-foreground hover:text-foreground"
+          title="Download as PNG"
+        >
+          <Download className="w-3.5 h-3.5" />
+        </button>
+      </div>
       <div className="h-64">
         <ResponsiveContainer width="100%" height="100%">
           {renderChart()!}
