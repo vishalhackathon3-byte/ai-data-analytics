@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 
 const navItems = [
   { path: '/', label: 'Dashboard', icon: LayoutDashboard },
+  { path: '/data', label: 'Data Table', icon: Table2 },
   { path: '/upload', label: 'Upload Data', icon: Upload },
   { path: '/chat', label: 'AI Chat', icon: MessageSquare },
 ];

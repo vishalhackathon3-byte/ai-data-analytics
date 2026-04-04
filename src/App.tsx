@@ -25,6 +25,7 @@ const App = () => (
               <Route path="/" element={<Index />} />
               <Route path="/upload" element={<UploadPage />} />
               <Route path="/chat" element={<ChatPage />} />
+              <Route path="/data" element={<DataTablePage />} />
             </Route>
             <Route path="*" element={<NotFound />} />
           </Routes>
