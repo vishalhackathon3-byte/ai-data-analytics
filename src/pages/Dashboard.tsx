@@ -5,7 +5,8 @@ import KPICard from '@/components/kpi/KPICard';
 import AnalyticsChart from '@/components/charts/AnalyticsChart';
 import DashboardFilters, { FilterState } from '@/components/filters/DashboardFilters';
 import { generateDemoKPIs, generateDemoCharts } from '@/lib/data-store';
-import { Sparkles, Table2, ArrowRight } from 'lucide-react';
+import { Sparkles, Table2, ArrowRight, Download } from 'lucide-react';
+import { exportDatasetCSV } from '@/lib/export-utils';
 import { Link } from 'react-router-dom';
 
 const Dashboard = () => {
