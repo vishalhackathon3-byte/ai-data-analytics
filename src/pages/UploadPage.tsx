@@ -58,7 +58,7 @@ const UploadPage = () => {
         <input
           id="file-input"
           type="file"
-          accept=".csv"
+          accept=".csv,.xlsx,.xls,.json"
           className="hidden"
           onChange={e => {
             const file = e.target.files?.[0];
